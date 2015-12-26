@@ -1,6 +1,6 @@
 <?php
 
-$pageTitle = 'Bike And Walk Docs List';
+$pageTitle = 'Docs List';
 
 ## Add items to the header if needed
 

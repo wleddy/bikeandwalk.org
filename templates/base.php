@@ -3,6 +3,7 @@
 # This file passes the content of the Readme.md file in the same directory
 # through the Markdown filter. You can adapt this sample code in any way
 # you like.
+$SiteName = "Bike and Walk";
 
 # Install PSR-0-compatible class autoloader
 spl_autoload_register(function($class){
@@ -49,7 +50,7 @@ foreach($htmlContainers as $baseName => $x_value){
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php echo($pageTitle);?></title>
+        <title><?php echo($pageTitle);?> - <?php echo($SiteName)?></title>
 		<link rel="icon" type="image/png" href="/images/favoricon.png" >
 	    <link rel="SHORTCUT ICON" type="image/vnd.microsoft.icon" href="/images/favricon.ico" >
 		<link rel="apple-touch-icon" sizes="114x114" href="/images/HeaderLogo128.png" />

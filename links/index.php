@@ -1,6 +1,6 @@
 <?php
 
-$pageTitle = 'NewPage';
+$pageTitle = 'Links';
 
 ## Add items to the header if needed
 #$extraCSS = '';
