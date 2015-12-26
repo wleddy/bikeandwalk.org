@@ -1,0 +1,26 @@
+#content img {
+	max-width: 80%;
+}
+#content table, #content th, #content td {
+	border: 1px solid #999;
+	border-collapse: collapse;
+	padding: 1pt 3pt;
+}
+#content th {
+	background-color: #ccc;
+	color: #fff;
+}
+#content table { 
+	width: 80%;
+	margin-top: 10pt;
+}
+
+.fieldName {
+	width: 80pt;
+}
+.fieldDesc {
+	width: 400px;
+}
+td.tableDesc {
+
+}

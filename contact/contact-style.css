@@ -1,0 +1,7 @@
+/* Extra CSS for the Contact Page */
+
+.addInfo {display:none;}
+form {
+    padding-top:2em;
+    width:50%;
+}
