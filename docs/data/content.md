@@ -1,5 +1,3 @@
-[Docs List](/docs/)
-
 #Data Dictionary
 
 ##Entity Relationship Diagram
