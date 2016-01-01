@@ -6,8 +6,6 @@
 ![erd.png](erd.png)
 
 
-
-
 <div style="display:none" >
 <table class="dataTable" >
 	<tr>
@@ -69,7 +67,7 @@
 
 ##Table Definitions
 
-Modified: 10/31/15
+_Updated Dec 31, 2015_
 
 Primary keys have been omitted for simplicity here. A numeric key field named "ID" may be assumed for each table.
 
@@ -87,6 +85,10 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 	<tr>
 		<td class="fieldName">email</td>
 		<td class="fieldDesc">contact email for the org. administrator</td>
+	</tr>
+	<tr>
+		<td class="fieldName">defaultTimeZone</td>
+		<td class="fieldDesc">The time zone to be used by default when creating countEvent records for this organization. A 3 char string such as "PST", "EST", etc.</td>
 	</tr>
 </table>
 
@@ -186,6 +188,14 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 		<td class="fieldDesc">The ending date and time</td>
 	</tr>
 	<tr>
+		<td class="fieldName">timeZone</td>
+		<td class="fieldDesc">The time zone where the counting will take place. In the format "PST", "EST", etc.</td>
+	</tr>
+	<tr>
+		<td class="fieldName">isDST</td>
+		<td class="fieldDesc">0 if event is not during daylight savings time, else 1</td>
+	</tr>
+	<tr>
 		<td class="fieldName">organization_ID</td>
 		<td class="fieldDesc">Foreign key link to Organization</td>
 	</tr>
@@ -237,7 +247,12 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 	</tr>
 	<tr>
 		<td class="fieldName">tripDate</td>
-		<td class="fieldDesc">Date and time of trip. (Use this value along with the countingLocation_ID to unique id for this trip in case you need to delete the trip later from client)</td>
+		<td class="fieldDesc">Date and time of trip.</td>
+	</tr>
+	<tr>
+		<td class="fieldName">seqNo</td>
+		<td class="fieldDesc">A sequence number that is unique to the countingLocaton. It represents a trip by one or more travelers and is used to undo trips that the user
+			has entered in error.</td>
 	</tr>
 	<tr>
 		<td class="fieldName">turnDirection</td>
