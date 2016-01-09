@@ -1,7 +1,7 @@
 <?php
 try{
     $GotConfig = false;
-	include 'config.php';
+	require_once 'config.php';
 	$GotConfig = true;
 } catch (Exception $e) {
     echo "<h3><strong>Exception:</strong> {$e->getMessage()}</h3>";
