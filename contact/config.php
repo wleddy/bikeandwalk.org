@@ -19,8 +19,8 @@ if((file_exists($site['config_global_settings'])) && (file_exists($site['config_
 date_default_timezone_set('America/Los_Angeles');
 
 // override or extend as needed
-//$site['from_name'] = 'Bike and Walk'; // from email name 
-//$site['from_email'] = 'info@bikeandwalk.org'; // from email address 
+$site['from_name'] = 'Bike and Walk'; // from email name 
+$site['from_email'] = 'info@bikeandwalk.org'; // from email address 
 
 
 //echo "site config";
