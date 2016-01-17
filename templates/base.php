@@ -10,15 +10,28 @@ spl_autoload_register(function($class){
 # Get Markdown class
 use \Michelf\Markdown;
 
+function prepPath($path){
+    # ensure that path has a leading "/" and no trailing "/"
+    if(substr($path,0,1) != "/"){
+        $path = "/" + $path;
+    }
+    if (substr($path,-1) == "/"){
+        $path = substr($path,0,-1);
+    }
+    return trim($path);
+}
+
 /* 
     'content.xx' is the default name for the main page body but having all the pages named
     "content" is confusing during editing. 
     This change allows you to name the main content file after the enclosing directory name
 */
-$serverURI = $_SERVER['REQUEST_URI'];
-#ensure that there is a trailing '/' in $serverURI
-if (substr($serverURI,strlen($serverURI)-1) != '/' ) {$serverURI = $serverURI . '/';}
-$bits = explode("/", $serverURI);
+$requestURI = prepPath($_SERVER['REQUEST_URI']);
+$docRoot = prepPath($_SERVER['DOCUMENT_ROOT']);
+
+#ensure that there is a trailing '/' in $requestURI
+#if (substr($requestURI,strlen($requestURI)-1) != '/' ) {$requestURI = $requestURI . '/';}
+$bits = explode("/", $requestURI . "/");
 $localDir = $bits[count($bits)-2];
 
 if ($localDir=="") {$localDir = "arandomstring";} ## not sure how the file system will handle an empty file name
@@ -47,13 +60,13 @@ foreach($htmlContainers as $baseName => $x_value){
 		$htmlContainers[$baseName]['text'] = Markdown::defaultTransform($text);
 	}
 		#check the default files
-	elseif(file_exists($_SERVER['DOCUMENT_ROOT']."/templates/".$baseName.'.php')){
-		$htmlContainers[$baseName]['filepath'] = $_SERVER['DOCUMENT_ROOT']."/templates/".$baseName.'.php';
-	}elseif(file_exists($_SERVER['DOCUMENT_ROOT']."/templates/".$baseName.'.html')){
-		$htmlContainers[$baseName]['text'] = file_get_contents($_SERVER['DOCUMENT_ROOT']."/templates/".$baseName.'.html');
-	}elseif (file_exists($_SERVER['DOCUMENT_ROOT']."/templates/".$baseName.'.md')) {
+	elseif(file_exists($docRoot."/templates/".$baseName.'.php')){
+		$htmlContainers[$baseName]['filepath'] = $docRoot."/templates/".$baseName.'.php';
+	}elseif(file_exists($docRoot."/templates/".$baseName.'.html')){
+		$htmlContainers[$baseName]['text'] = file_get_contents($docRoot."/templates/".$baseName.'.html');
+	}elseif (file_exists($docRoot."/templates/".$baseName.'.md')) {
 		# Read file and pass content through the Markdown parser
-		$text = file_get_contents($_SERVER['DOCUMENT_ROOT']."/templates/".$baseName.'.md');
+		$text = file_get_contents($docRoot."/templates/".$baseName.'.md');
 		$htmlContainers[$baseName]['text'] = Markdown::defaultTransform($text);
 	}
 } #for htmlConainers
@@ -71,8 +84,8 @@ foreach($htmlContainers as $baseName => $x_value){
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/common.js" ></script>
 		<?php
-		    $js = $serverURI.$localDir.'.js';
-		    if(file_exists(substr($_SERVER['DOCUMENT_ROOT'],0,-1).$js)){
+		    $js = $requestURI . "/" . $localDir . '.js';
+		    if(file_exists($docRoot.$js)){
 		    echo('<script type="text/javascript" src="'.$js.'" ></script>');
 		    }
 		?>
@@ -80,13 +93,13 @@ foreach($htmlContainers as $baseName => $x_value){
 		
 		<link rel="stylesheet" href="/css/default.css" type="text/css" media="all" >
 		<?php
-		    $css = $serverURI.$localDir.'.css';
-		    echo(substr($_SERVER['DOCUMENT_ROOT'],0,-1).$css);
-		    if(file_exists(substr($_SERVER['DOCUMENT_ROOT'],0,-1).$css)){
-		    echo('<link rel="stylesheet" href="'.$css.'" type="text/css" media="all" >');
+		    $css = $requestURI . "/" . $localDir . '.css';
+		    if(file_exists($docRoot. $css)){
+		    ?>
+		    <link rel="stylesheet" href="<?php echo($css);?>" type="text/css" media="all" >
+		    <?php
 		    }
-		?>
-		<?php echo($extraCSS);?>
+		echo($extraCSS);?>
 		
     </head>
     <body>
