@@ -20,6 +20,7 @@ $serverURI = $_SERVER['REQUEST_URI'];
 if (substr($serverURI,strlen($serverURI)-1) != '/' ) {$serverURI = $serverURI . '/';}
 $bits = explode("/", $serverURI);
 $localDir = $bits[count($bits)-2];
+
 if ($localDir=="") {$localDir = "arandomstring";} ## not sure how the file system will handle an empty file name
 
 ## Get the page content -- adding elements here will add divs to html scaffold
@@ -70,16 +71,18 @@ foreach($htmlContainers as $baseName => $x_value){
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script type="text/javascript" src="/js/common.js" ></script>
 		<?php
-		    if(file_exists($_SERVER['DOCUMENT_ROOT']."/".$localDir."/".$localDir.'.js')){
-		    echo('<script type="text/javascript" src="'.$localDir.'.js" ></script>');
+		    $js = $serverURI.$localDir.'.js';
+		    if(file_exists(substr($_SERVER['DOCUMENT_ROOT'],0,-1).$js)){
+		    echo('<script type="text/javascript" src="'.$js.'" ></script>');
 		    }
 		?>
 		<?php echo($extraJS);?>
 		
 		<link rel="stylesheet" href="/css/default.css" type="text/css" media="all" >
 		<?php
-		    if(file_exists($_SERVER['DOCUMENT_ROOT']."/".$localDir."/".$localDir.'.css')){
-		    echo('<link rel="stylesheet" href="'.$localDir.'.css" type="text/css" media="all" >');
+		    $css = $serverURI.$localDir.'.css';
+		    if(file_exists(substr($_SERVER['DOCUMENT_ROOT'],0,-1).$css)){
+		    echo('<link rel="stylesheet" href="'.$css.'" type="text/css" media="all" >');
 		    }
 		?>
 		<?php echo($extraCSS);?>

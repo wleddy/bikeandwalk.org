@@ -1,11 +1,11 @@
-[Docs List](/docs/)
+_Updated Jan 16, 2016_
 
 #Pages & API end points
 
 ##Definitions
-*  **Count Event** - Describes a traffic count that is to be carried out on a particular date and time at one or more locations. 
-* **Location** - Describes the physical location where counts are to be conducted. 
-*   **Counting Location** - Describes a specific location, date and time where traffic is to be counted. Each location is associated with a single Count Event record and a single Location record. 
+* **Count Event** - Describes a date and time when traffic is to be counted at one or more locations. 
+* **Location** - Describes the physical location where counts are to be conducted. The same Location will usually be used during multiple Count Events.
+* **Assignment** - Represents a single User assigned to a Location on the date of a Count Event.
 
 ##HTML Pages
 Title: Count Page
@@ -17,10 +17,10 @@ Title: Count Page
 
 Title: Organization List
 
-*  Input: none
+*  Input: None
 *  Output: Display a list of Organization records with links to allow editing of the records.
 *  Errors: No Organization records found
-*  Description: Disply a list of organizations for the super-admin
+*  Description: Display a list of organizations for the super-admin
 
 Title: Organization Create / Edit
 
@@ -51,7 +51,7 @@ Title: Counting Event Create/Edit
 *   Errors: Org. not found, Event id not found
 *   Description: Provide a way for admin to create Count Event record. The Event recort has a relation to one Organization record. 
 
-Title: Count Location Create/Edit
+Title: Assignment Create/Edit
 
 *    Input: Count Event ID, Count location ID (for editing)
 *    Output: Display newly created Count location Id
@@ -77,30 +77,28 @@ Title: Count Results
 
 Title: Start Count
 
-*   Input: countingLocationUID
+*   Input: assignmentUID
 *   Output: Data object needed to populate the client count form. 
 *   Errors: ID not found, Count already completed, Count start period has expired
 *   Description: Send the data required by the client app to perform the count. The data includes the street names and Traveler definitions needed to begin a count.
 
 Title: Record trip
 
-*    Input: Unique Trip Identifier (location_ID + datetime string), Trip data
-*    Output: Status code; trip recorded, duplicate trip, count already closed, database not available (resend later)
+*    Input: a json formatted string: `Action:"add", tripCnt, tripDate, turnDirection, seqNo, location_ID, traveler_ID, countEvent_ID`
+*    Output: a json object: {"result":"success", "total": <total trips for this assignment >} The response is always success regardless.
 *    Errors: none
 *    Description: The client app sends data for one or more trips to server for storage. Based on the status returned the client app will delete or mark the trip(s) as recorded. Any trips that get a "database not available" response will be submitted again.  
 
+Title: Undo Trip
 
-Title: Delete Trip
-
-* Input: Unique Trip Identifier (location_ID + datetime string)
-* Output: Status code; ok, trip not found, counting location record closed, database not available (resend later)
+* Input: a json formatted string: `Action:"undo", Location_ID, countEvent_ID, seqNo, tripDate`
+* Output: a json object: {"result":"success", "total": <total trips for this assignment >} The response is always success regardless. Also, trips may only be deleted within one minute of the trip time.
 * Errors: none
 * Description: Used to "undo" a single trip by deleting the record. 
 
+Title: Total Trips
 
-Title: End Count
-
-*    Input: Count ID, Weather code 
-*    Output: Status code; ok, database not available (resend later)
-*    Errors: none
-*    Description: Setting the weather field of the countingLocation table to a non-null value indicates that the count for that location is complete. Alternately a countingLocation record is considered closed 24 hours after the end of the count. Once closed, no additional changes will be recorded for that countingLocation.
+* Input: a json formatted string: `Action:"total", Location_ID, countEvent_ID`
+* Output: a json object: {"result":"success", "total": <total trips for this assignment >} The response is always success regardless. Also, trips may only be deleted within one minute of the trip time.
+* Errors: none
+* Description: Used to get the current trip total for and assignment 

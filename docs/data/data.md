@@ -3,71 +3,11 @@
 ##Entity Relationship Diagram
 ![erd.png](erd.png)
 
-
-<div style="display:none" >
-<table class="dataTable" >
-	<tr>
-		<th colspan="2">TableName</th>
-	</tr>
-	<tr>
-		<td class="tableDesc" colspan="2">TableDescription</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-	<tr>
-		<td class="fieldName">FieldName</td>
-		<td class="fieldDesc">FieldDesc</td>
-	</tr>
-</table>
-</div>
-
 ##Table Definitions
 
-_Updated Dec 31, 2015_
+_Updated Jan 16, 2016_
 
-Primary keys have been omitted for simplicity here. A numeric key field named "ID" may be assumed for each table.
+Primary keys have been omitted for simplicity here. A numeric key field named "ID" included in each table.
 
 <table class="dataTable" >
 	<tr>
@@ -149,6 +89,10 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 		<td class="fieldDesc">The street that runs east and west at this location</td>
 	</tr>
 	<tr>
+		<td class="fieldName">locationType</td>
+		<td class="fieldDesc">Is this counting location at an "intersection" or is it "mid-block"?</td>
+	</tr>
+	<tr>
 		<td class="fieldName">city</td>
 		<td class="fieldDesc"></td>
 	</tr>
@@ -178,6 +122,10 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 		<td class="tableDesc" colspan="2">This table represents traffic count being conducted by one Organization on a particular date and time. The count will be conducted at one or more locations.</td>
 	</tr>
 	<tr>
+		<td class="fieldName">title</td>
+		<td class="fieldDesc">A descriptive title for this event.</td>
+	</tr>
+	<tr>
 		<td class="fieldName">startDate</td>
 		<td class="fieldDesc">The starting date and time</td>
 	</tr>
@@ -200,22 +148,18 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 </table>
 <table class="dataTable" >
 	<tr>
-		<th colspan="2">countingLocation</th>
+		<th colspan="2">assignment</th>
 	</tr>
 	<tr>
-		<td class="tableDesc" colspan="2">This table represents a single location where the count is being done as part of the related count event. </td>
+		<td class="tableDesc" colspan="2">(formerly named "countingLocation") This table represents a single location where the count is being done as part of the related count event. </td>
 	</tr>
 	<tr>
-		<td class="fieldName">countingLocationUID</td>
+		<td class="fieldName">assignmentUID</td>
 		<td class="fieldDesc">A unique identifier string that will be used to load the Count Location data into the client app. The goal is to create a hard to guess string to make it unlikely that someone other than the assigned person could guess the uri and be able to intentionally or accidentally enter bad data into the database.  </td>
 	</tr>
 	<tr>
 		<td class="fieldName">weather</td>
 		<td class="fieldDesc">A numerical code that describes the weather conditions at the time of the count. A non-null value here will also act as an indicater that the count is complete for this location. </td>
-	</tr>
-	<tr>
-		<td class="fieldName">countType</td>
-		<td class="fieldDesc">"intersection" or "screen line"</td>
 	</tr>
 	<tr>
 		<td class="fieldName">countEvent_ID</td>
@@ -249,7 +193,7 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 	</tr>
 	<tr>
 		<td class="fieldName">seqNo</td>
-		<td class="fieldDesc">A sequence number that is unique to the countingLocaton. It represents a trip by one or more travelers and is used to undo trips that the user
+		<td class="fieldDesc">A sequence number used in conjunction with the assignment record ID. It represents a trip by one or more travelers and is used to undo trips that the user
 			has entered in error.</td>
 	</tr>
 	<tr>
@@ -263,6 +207,30 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 	<tr>
 		<td class="fieldName">traveler_ID</td>
 		<td class="fieldDesc">Foreign key link to the Traveler record</td>
+	</tr>
+</table>
+
+<table class="dataTable" >
+	<tr>
+		<th colspan="2">provisionalTrip</th>
+	</tr>
+	<tr>
+		<td class="tableDesc" colspan="2">
+			<p>There may be a situation where the server receives a new trip record request which could not be validated for
+			some reason. Rather that reject the record, the system will record the trip here with some description of
+			the issue. </p>
+			<p>An administrator will need to manually review the record for correction and transfer to the trip table.</p>
+			<p>
+				This table is identical to the trip table with the addition of the field below.
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="tableDesc" colspan="2">... includes all fields form Trip table plus ...</td>
+	</tr>
+	<tr>
+		<td class="fieldName">issue</td>
+		<td class="fieldDesc">A message about the reason(s) the trip record didn't validate</td>
 	</tr>
 </table>
 
