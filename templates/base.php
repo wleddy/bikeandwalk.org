@@ -81,6 +81,7 @@ foreach($htmlContainers as $baseName => $x_value){
 		<link rel="stylesheet" href="/css/default.css" type="text/css" media="all" >
 		<?php
 		    $css = $serverURI.$localDir.'.css';
+		    echo(substr($_SERVER['DOCUMENT_ROOT'],0,-1).$css);
 		    if(file_exists(substr($_SERVER['DOCUMENT_ROOT'],0,-1).$css)){
 		    echo('<link rel="stylesheet" href="'.$css.'" type="text/css" media="all" >');
 		    }
