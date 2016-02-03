@@ -1,6 +1,6 @@
 <?php
 
-$pageTitle = 'Counting';
+$pageTitle = 'Count Administration';
 
 ## Add items to the header if needed
 #$extraCSS = '';

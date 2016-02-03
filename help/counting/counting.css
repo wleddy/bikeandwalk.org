@@ -1,54 +1,6 @@
 /* BEGIN CSS Reset */
 
 
-/*
-body p {
-  margin: 0 0 1.5em; }
-  body p body p img.left {
-    display: inline;
-    float: left;
-    margin: 1.5em 1.5em 1.5em 0;
-    padding: 0; }
-  body p body p img.right {
-    display: inline;
-    float: right;
-    margin: 1.5em 0 1.5em 1.5em;
-    padding: 0; }
-
-body a {
-  text-decoration: underline;
-  color: #000099; }
-  body a body a:visited {
-    color: #000066; }
-  body a body a:focus {
-    color: black; }
-  body a body a:hover {
-    color: black; }
-  body a body a:active {
-    color: #cc0099; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-family: inherit;
-  vertical-align: baseline; }
-
-div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
-pre, a, abbr, acronym, address, code, del, dfn, em, img,
-dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: 100%;
-  font-family: inherit;
-  vertical-align: baseline; }
-*/
-
 blockquote, q {
   margin: 0;
   padding: 0;
@@ -219,7 +171,6 @@ div#LessonPageNav {
   border-top: 1px solid #cfcfcf; 
   padding: 1em 0 1.25em 0; 
   margin-top: 2.5em; 
-  font-family: Georgia, serif; 
   font-size: 1.1em; 
   color: #222;}
 div#LessonPageNav ul {
@@ -240,10 +191,12 @@ div#LessonPageNav li#LessonPageNext {
   padding: 0; 
   float: right; 
   width: 320px; 
-  text-align: right; }
+  text-align: right; 
+  position:relative;
+  top:-18px;}
 div#LessonPageNav li#LessonPageNext a {
   padding: 0 29px 0 0; 
-  background: url("../images/icon-next.png") no-repeat top right; 
+  background: url("../../images/icon-next.png") no-repeat top right; 
   line-height: 21px; 
   display: block; }
 div#LessonPageNav li#LessonPagePrevious {
@@ -254,7 +207,7 @@ div#LessonPageNav li#LessonPagePrevious {
   text-align: left; }
 div#LessonPageNav li#LessonPagePrevious a {
   padding: 0 0 0 29px; 
-  background: url("../images/icon-previous.png") no-repeat top left; 
+  background: url("../../images/icon-previous.png") no-repeat top left; 
   line-height: 21px; 
   display: block; }
   
