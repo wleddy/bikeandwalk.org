@@ -90,7 +90,7 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 	</tr>
 	<tr>
 		<td class="fieldName">locationType</td>
-		<td class="fieldDesc">Is this counting location at an "intersection" or is it "mid-block"?</td>
+		<td class="fieldDesc">Is this counting location at an "intersection" or is it "screenline" (mid-block)?</td>
 	</tr>
 	<tr>
 		<td class="fieldName">city</td>
@@ -142,6 +142,10 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 		<td class="fieldDesc">0 if event is not during daylight savings time, else 1</td>
 	</tr>
 	<tr>
+		<td class="fieldName">weather</td>
+		<td class="fieldDesc">A numerical code that describes the weather conditions at the time of the count. A non-null value here will also act as an indicator that the count is complete for this location. </td>
+	</tr>
+	<tr>
 		<td class="fieldName">organization_ID</td>
 		<td class="fieldDesc">Foreign key link to Organization</td>
 	</tr>
@@ -156,10 +160,6 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 	<tr>
 		<td class="fieldName">assignmentUID</td>
 		<td class="fieldDesc">A unique identifier string that will be used to load the Count Location data into the client app. The goal is to create a hard to guess string to make it unlikely that someone other than the assigned person could guess the uri and be able to intentionally or accidentally enter bad data into the database.  </td>
-	</tr>
-	<tr>
-		<td class="fieldName">weather</td>
-		<td class="fieldDesc">A numerical code that describes the weather conditions at the time of the count. A non-null value here will also act as an indicater that the count is complete for this location. </td>
 	</tr>
 	<tr>
 		<td class="fieldName">countEvent_ID</td>
@@ -322,5 +322,83 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 	<tr>
 		<td class="fieldName">featureValue</td>
 		<td class="fieldDesc">A value for the featureClass</td>
+	</tr>
+</table>
+
+<table class="dataTable" >
+	<tr>
+		<th colspan="2">outbox</th>
+	</tr>
+	<tr>
+		<td class="tableDesc" colspan="2">
+			A temporary storage table for email messages awaiting processing. After a message has been successfully
+			sent, the outbox record is deleted.
+			After some number of failed attempts, the admin is informed of the failure and the outbox record is deleted.
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldName">from</td>
+		<td class="fieldDesc">
+			From address to use for email. Usually the admin email address form the 
+			organization for which the email is being sent
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldName">to</td>
+		<td class="fieldDesc">Recipient email address or comma separated addresses.</td>
+	</tr>
+	<tr>
+		<td class="fieldName">replyTo</td>
+		<td class="fieldDesc">Reply-to email address if diff from "from".</td>
+	</tr>
+	<tr>
+		<td class="fieldName">CC</td>
+		<td class="fieldDesc">Carbon Copy recipient email address or comma separated addresses.</td>
+	</tr>
+	<tr>
+		<td class="fieldName">BCC</td>
+		<td class="fieldDesc">BCC recipient email address or comma separated addresses.</td>
+	</tr>
+	<tr>
+		<td class="fieldName">subject</td>
+		<td class="fieldDesc">Subject text</td>
+	</tr>
+	<tr>
+		<td class="fieldName">messageText</td>
+		<td class="fieldDesc">
+			The text version of the email message.
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldName">messageHTML</td>
+		<td class="fieldDesc">
+			The HTML version of the email message if any.
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldName">sendAttemptCount</td>
+		<td class="fieldDesc">
+			The number of times the system attempted and failed to send the message. After some number of failed attempts
+			the sys admin will be notified and the outbox record will be deleted.
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldName">lastSendTime</td>
+		<td class="fieldDesc">
+			The DateTime of the last send attempt so we don't attempt to resend failed messages too fast.
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldName">dateSent</td>
+		<td class="fieldDesc">
+			The DateTime when the message was successfully sent. This is useful if the message is sent, but the record could
+			not be deleted for some reason so that we don't keep sending the message forever.
+		</td>
+	</tr>
+	<tr>
+		<td class="fieldName">sendHistory</td>
+		<td class="fieldDesc">
+			Success or error responses from mail server.
+		</td>
 	</tr>
 </table>
