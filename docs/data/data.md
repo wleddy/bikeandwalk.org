@@ -173,6 +173,11 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 		<td class="fieldName">user_ID</td>
 		<td class="fieldDesc">Foreign key link to the person assigned to count at this location</td>
 	</tr>
+	<tr>
+		<td class="fieldName">invitationSent</td>
+		<td class="fieldDesc">A text field that will be the empty string if no email invitation has been send
+			for this assignment. Otherwise it will contain some text. Probably a date string.</td>
+	</tr>
 
 </table>
 
