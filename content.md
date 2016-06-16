@@ -21,7 +21,7 @@ better idea of how it works from the stand point of the people in the field.
 
 If you'd like to try it out yourself, the link that follows will let you play around with it. 
 Still not quite the final appearance
-but functional: [app.bikeandwalk.org/count/10fe1c1603416a0d9ee6d958026acd57/](http://app.bikeandwalk.org/count/10fe1c1603416a0d9ee6d958026acd57/)
+but functional: [test.bikeandwalk.org/count/test/](http://test.bikeandwalk.org/count/test/)
 
 ## Administration
 Administration of the system and its data is divided into two components. System administration is handled by the
