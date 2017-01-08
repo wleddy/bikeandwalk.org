@@ -16,12 +16,13 @@ An internet connection is _**not**_ required when counting. Users who may be cou
 do so without a connection to the internet. Later, when a connection is available, their count data will be uploaded 
 to the central data bank. (For the technically inclined, we're using localStorage for this.)
 
+## A little help here...
 The instructions on [using the system for counting](http://bikeandwalk.org/help/counting/) may give you a
 better idea of how it works from the stand point of the people in the field.
 
-If you'd like to try it out yourself, the link that follows will let you play around with it. 
-Still not quite the final appearance
-but functional: [test.bikeandwalk.org/count/test/](http://test.bikeandwalk.org/count/test/)
+## Try it yourself
+If you'd like to try it out yourself, this link will let you play around with it. 
+[test.bikeandwalk.org/count/test/](http://test.bikeandwalk.org/count/test/)
 
 ## Administration
 Administration of the system and its data is divided into two components. System administration is handled by the
