@@ -14,7 +14,6 @@ $extraCSS = '	<style>
 ';
 #$extraHeaders = '';
 $extraJS = '
-	<link rel=stylesheet type=text/css href="https://app.bikeandwalk.org/static/style.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="https://app.bikeandwalk.org/static/bikeandwalk.js"></script>
