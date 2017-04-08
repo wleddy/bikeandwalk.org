@@ -16,6 +16,10 @@ of travel.
 
 Use the **"Change Directions"** button to swap the labels as needed to make counting more convenient to you. 
 
+#### Sign up for a location ####
+
+If you would like to help, please [Sign Up Here](http://signup.com/go/a23sTQ).
+
 #### We will be counting at the six locations listed below: ####
 
 ______________
@@ -60,7 +64,7 @@ tracks.
 <p class="clearer">&nbsp;</p>
 ______________
 
-## 3. Freeport Blvd. at Fruitidge ##
+## 3. Freeport Blvd. at Fruitridge ##
 
 <div class="mapdiv" id="fruitridge"></div>
 <script>
