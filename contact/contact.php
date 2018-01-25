@@ -1,11 +1,42 @@
 <?php
-try{
-    $GotConfig = false;
-	require_once 'config.php';
-	$GotConfig = true;
-} catch (Exception $e) {
-    echo "<h3><strong>Exception:</strong> {$e->getMessage()}</h3>";
-} if($GotConfig) {
+	$message = array();
+	$site = array();
+	include __DIR__ . '/config.php'; // $site array should be popluated
+	if(array_key_exists('config_library',$site)){
+		$site['config_library'] = $site['config_library'] . "/williesMail.php";
+	} else {
+		echo "<h3><strong>Error: Site settings not found.</strong></h3>";
+		return;
+	}
+	if(file_exists($site['config_library'])){
+		require $site['config_library'];
+		try{
+			$result = setHostDefaults($message); // $message now contains the host settings
+			if($result[0] === True){
+				// got settings, merge site specific overrides
+				$message = array_merge($message, $site);
+				//var_dump($message);
+			} else {
+				// error getting defaults
+				echo "<h3><strong>Error getting mail defaults</strong></h3>";
+				echo "<ul>";
+				reset($result[1]);
+				while (list($key, $val) = each($result[1])) {
+				    echo "<li>$val</li>";
+				}
+				echo "</ul>";
+				return; // exit on error
+			}			
+		} catch (Exception $e) {
+	    echo "<h3><strong>Exception:</strong> {$e->getMessage()}</h3>";
+			return;
+		}			
+	} else {
+	    echo "<h3><strong>Error: williesMail.php file not found at " . $site['config_library'] ."</strong></h3>";
+			return;
+	}
+
+
 	if ($_POST){
 		// web links in the comment means it's probably spam
 		$CommentHasHttp_b = (stripos($_POST['Question'],"http://") > -1);
@@ -26,8 +57,41 @@ try{
 		if(($_POST['Additional_Info'] == '') && ($CommentHasHttp_b == false) && ($isNotEmpty)){
 			// the secret question is not shown to real users so must be empty
 			// No longer actually send the spammers mail
-
-			// $site array now exists
+			
+			// load values into $message array
+			$message['request_email'] = $_POST['email'];
+			$message['request_name'] = $_POST['Name'];
+			$message['subject'] = "Web Contact";
+			$message['body'] = $request;
+			$message['responseTimeInSeconds'] = time() - intval($_POST['Code']);
+			
+			try {
+				$result = sendViaSMTP($message);
+			} catch (Exception $e){
+		    echo "<h3><strong>Exception:</strong> Unable to send message. {$e->getMessage()}</h3>";
+				return;
+			}
+			if($result[0] === True){
+				?>
+				  <div id="main">
+					<h2>Thank You for your interest</h2>
+					<p>A reply will be on the way shortly.</p>
+					</div>
+					<div id="sidebar">&nbsp;</div>
+				<?php 
+			} else {
+				// error sending email
+				echo "<h3>Sorry, there is a problem with our email system.</h3>";
+				echo "<ul>";
+				reset($result[1]);
+				while (list($key, $val) = each($result[1])) {
+				    echo "<li>$val</li>";
+				}
+				echo "</ul>";
+			}			
+			
+			/*
+			// $site arry now exists
 			$fromAddress = $site['from_email'];
 
 			// instantiate the class 
@@ -81,7 +145,7 @@ try{
 			$mailer->ClearAttachments(); 
 			$mailer->ClearCustomHeaders(); 
 			$mailer->ClearReplyTos(); 
-            
+           */ 
 		} // secret question is empty
 	} // if Post
 	else{
@@ -152,5 +216,5 @@ try{
         
 	<?php
 	} // else show form
-} //Got config
+	
 ?>
