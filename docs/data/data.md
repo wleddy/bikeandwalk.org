@@ -62,12 +62,24 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 		<td class="fieldName">inactive</td>
 		<td class="fieldDesc">We don't want to delete a record after someone has participated in a count so we can set it to inactive to hide it during data input as a convenience to the administrator. Defaults to false. </td>
 	</tr>
-	<tr>
-		<td class="fieldName">organization_ID</td>
-		<td class="fieldDesc">Foreign key link to organization. Each record can only be associated with one organization.</td>
-	</tr>
 </table>
 
+<table class="dataTable" >
+	<tr>
+		<th colspan="2">UserOrganization</th>
+	</tr>
+	<tr>
+		<td class="tableDesc" colspan="2">An associative table that links a jser to an organization</td>
+	</tr>
+	<tr>
+		<td class="fieldName">user_ID</td>
+		<td class="fieldDesc">Foreign key link to the user record. </td>
+	</tr>
+	<tr>
+		<td class="fieldName">organization_ID</td>
+		<td class="fieldDesc">Foreign key link to the organization record. </td>
+	</tr>
+</table>
 
 <table class="dataTable" >
 	<tr>
