@@ -66,10 +66,10 @@ Primary keys have been omitted for simplicity here. A numeric key field named "I
 
 <table class="dataTable" >
 	<tr>
-		<th colspan="2">UserOrganization</th>
+		<th colspan="2">userOrganization</th>
 	</tr>
 	<tr>
-		<td class="tableDesc" colspan="2">An associative table that links a jser to an organization</td>
+		<td class="tableDesc" colspan="2">An associative table that links a user to an organization</td>
 	</tr>
 	<tr>
 		<td class="fieldName">user_ID</td>
