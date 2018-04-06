@@ -2,7 +2,7 @@
 <?php 
 // Set the path to global settings 
 //$site['config_library'] = $_SERVER['DOCUMENT_ROOT'].'../lib'; // this fails on some versions of php?
-$site['config_library'] = '/Users/bleddy/Sites/lib'; // use absolute path to be sure...
+$site['config_library'] = '/home/leddysle/Sites/lib'; // use absolute path to be sure...
 $site['config_global_settings'] = $site['config_library'].'/config.php'; // Inside the config_library dir
 $site['mailer_class'] = $site['config_library'].'/MailClass.inc'; // Inside the config_library dir
 
