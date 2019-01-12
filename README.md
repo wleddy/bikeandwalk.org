@@ -1,4 +1,6 @@
-# bikeandwalk.org
-bikeandwalk.org web site
+# a_starter_app
 
-The public website for Bike and Walk app.
+When creating a new project, after cloning shotglass into your new repo, copy all the files from this directory into
+the repo root and modify as needed.
+
+See the [shotglass docs](/docs/shotglass2/README.md) for more info.
