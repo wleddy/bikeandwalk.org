@@ -102,6 +102,9 @@ def server_error(error):
 #Register the static route
 app.add_url_rule('/static/<path:filename>','static',shotglass.static)
 
+#Register before www so our docs route takes precedence
+from baw import bikeandwalk
+app.register_blueprint(bikeandwalk.mod)
 
 ## Setup the routes for users
 shotglass.register_users(app)
@@ -109,8 +112,6 @@ shotglass.register_users(app)
 # setup www.routes...
 shotglass.register_www(app)
 
-from baw import bikeandwalk
-app.register_blueprint(bikeandwalk.mod)
 
 if __name__ == '__main__':
     

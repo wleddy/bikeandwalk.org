@@ -4,8 +4,8 @@
         class="w3-button w3-bar-item w3-hide-large w3-text-grey ">Close &times;</a>
               <a class="w3-bar-item w3-button w3-border w3-secondary-color w3-primary-hover-color" href="/">Home</a>
               <a class="w3-bar-item w3-button w3-border w3-secondary-color w3-primary-hover-color" href="{{ url_for('www.contact')}}">Contact Us</a>
-              <a class="w3-bar-item w3-button w3-border w3-secondary-color w3-primary-hover-color" href="{{ url_for('www.docs')}}">Links</a>
-              <a class="w3-bar-item w3-button w3-border w3-secondary-color w3-primary-hover-color" href="{{ url_for('www.docs')}}">Docs</a>
+              <a class="w3-bar-item w3-button w3-border w3-secondary-color w3-primary-hover-color" href="{{ url_for('baw.links')}}">Links</a>
+              <a class="w3-bar-item w3-button w3-border w3-secondary-color w3-primary-hover-color" href="{{ url_for('baw.docs')}}">Docs</a>
               <a class="w3-bar-item w3-button w3-border w3-secondary-color w3-primary-hover-color" href="{{ url_for('baw.help')}}">Help</a>
         {% if not g.user %}
 

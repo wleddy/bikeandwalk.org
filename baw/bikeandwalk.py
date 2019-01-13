@@ -38,4 +38,50 @@ def help(path=None):
     else:
         abort(400)
     
-    
+@mod.route('/links/')
+def links():
+    setExits()
+    #import pdb;pdb.set_trace()
+    rendered_html = None
+    g.title = 'Links'
+    g.suppress_page_header = False
+    rendered_html = render_markdown_for('links.md',mod)
+    if render_template != None:
+        return render_template('index.html',rendered_html=rendered_html,)
+    else:
+        abort(400)
+   
+   
+@mod.route('/docs/')
+@mod.route('/docs/<path:path>/')
+def docs(path=None):
+    setExits()
+    #import pdb;pdb.set_trace()
+    rendered_html = None
+    g.title = 'Docs'
+    g.suppress_page_header = False
+    if path:
+        path_parts = path.strip('/').split('/')
+
+    if not path or len(path_parts) == 0:
+        rendered_html = render_markdown_for('docs.md',mod)
+    elif path_parts[0].lower() == 'forms':
+        g.title = "Forms"
+        rendered_html = render_markdown_for('forms.md',mod)
+    elif path_parts[0].lower() == 'usecase':
+        g.title = "Bike And Walk Use Case"
+        rendered_html = render_markdown_for('usecase.md',mod)
+    elif path_parts[0].lower() == 'api':
+        g.title = "Pages & API end points"
+        rendered_html = render_markdown_for('api.md',mod)
+    elif path_parts[0].lower() == 'data':
+        g.title = "Data Dictionary"
+        rendered_html = render_markdown_for('data.md',mod,escape=False) #False to preserve html
+    elif path_parts[0].lower() == 'delriotrail':
+        g.title = "Del Rio Trail Bike Count Project"
+        rendered_html = render_markdown_for('delriotrail.md',mod,escape=False) #False to preserve html
+
+    if render_template != None:
+        return render_template('index.html',rendered_html=rendered_html,)
+    else:
+        abort(400)
