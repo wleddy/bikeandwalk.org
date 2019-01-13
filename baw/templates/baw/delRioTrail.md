@@ -17,9 +17,9 @@ Use the **"Change Directions"** button to swap the labels as needed to make coun
 
 #### Sign up for a location ####
 
-If you would like to help, please [Sign Up Here](http://signup.com/go/a23sTQ).
+***The count is over... Thanks to our volunteers!***
 
-#### We will be counting at the six locations listed below: ####
+#### We counted at the six locations listed below: ####
 
 ______________
 
