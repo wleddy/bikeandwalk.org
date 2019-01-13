@@ -64,7 +64,7 @@ For the Freeport Bl. location near Fruitridge, position yourself north of Fruitr
 Centennial Methodist Church. You'll be able to stand safely out of the way at the edge of the parking lot there.
 
 <p class="w3-center" >
-	<img class="w3-image"  style="width:300pt;" src="/static/images/delRioTrail/fruitridge.jpeg" />
+	<img class="w3-image"  style="width:300pt;" src="/static/images/delRioTrail/Fruitridge.jpeg" />
 </p>
 <p class="clearer">&nbsp;</p>
 
