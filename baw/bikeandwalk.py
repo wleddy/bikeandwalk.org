@@ -79,7 +79,7 @@ def docs(path=None):
         rendered_html = render_markdown_for('data.md',mod,escape=False) #False to preserve html
     elif path_parts[0].lower() == 'delriotrail':
         g.title = "Del Rio Trail Bike Count Project"
-        rendered_html = render_markdown_for('delriotrail.md',mod,escape=False) #False to preserve html
+        rendered_html = render_markdown_for('delRioTrail.md',mod,escape=False) #False to preserve html
 
     if render_template != None:
         return render_template('index.html',rendered_html=rendered_html,)
