@@ -109,6 +109,9 @@ shotglass.register_users(app)
 # setup www.routes...
 shotglass.register_www(app)
 
+from baw import bikeandwalk
+app.register_blueprint(bikeandwalk.mod)
+
 if __name__ == '__main__':
     
     with app.app_context():

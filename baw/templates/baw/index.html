@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if rendered_html %}
+{{ rendered_html | safe() }}
+{% else %}
+<h2>Hmmmm...</h2>
+<p>There's nothing here... BAW Index.html'</p>
+{% endif %}
+
+{% endblock body %}
