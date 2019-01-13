@@ -31,10 +31,10 @@ Position yourself on the river side of the bike trail facing the freeway. There 
 danger of being run over by crazy bicycles.
 
 <p class="w3-center">
-	<img class="w3-image"  style="width:300pt;" src="/static/images/delRioTrail/millerpark.jpeg" />
+	<img class="w3-image"  style="width:300pt;" src="/static/images/delRioTrail/Millerpark.jpeg" />
 </p>
 <p style="text-align:center">
-	<img class="w3-image"  style="width:90%;" src="/static/images/delRioTrail/millerparkpano.jpeg" />
+	<img class="w3-image"  style="width:90%;" src="/static/images/delRioTrail/Millerparkpano.jpeg" />
 </p>
 
 <p class="clearer">&nbsp;</p>
