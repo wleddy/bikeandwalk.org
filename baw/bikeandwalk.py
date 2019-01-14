@@ -11,7 +11,17 @@ def setExits():
     # g.listURL = url_for('.display')
     # g.editURL = url_for('.edit')
     # g.deleteURL = url_for('.delete')
-    g.title = 'Help'
+    g.title = 'Home'
+    
+# @mod.route('/')
+# def help(path=None):
+#     setExits()
+#     rendered_html = None
+#     g.title = 'Home'
+#     g.suppress_page_header = True
+#     rendered_html = render_markdown_for('inext.md',mod)
+#     return render_template('index.html',rendered_html=rendered_html,)
+#
 
 @mod.route('/help/')
 @mod.route('/help/<path:path>/')
