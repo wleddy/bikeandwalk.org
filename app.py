@@ -67,7 +67,7 @@ def _before():
 
     #ensure that nothing is served from the instance directory
     if 'instance' in request.url:
-        abort(404)
+        return abort(404)
         
     #import pdb;pdb.set_trace()
     
