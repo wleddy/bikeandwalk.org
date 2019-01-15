@@ -80,6 +80,7 @@ DOC_DIRECTORY_LIST = ['/','docs','shotglass2/','shotglass2/docs/',]
 # Must be a list.
 STATIC_DIRS = [
     'resource/static',
+    'static/baw',
 ]
 
 ## This list will be PREPENDED to the above static search
@@ -95,7 +96,8 @@ STATIC_DIRS = [
 # Template directories to search FIRST
 # Must be a list of app relative paths to search
 HOST_TEMPLATE_DIRS = [
-    'resource'
+    'resource',
+    'baw/templates/baw',
 ]
 
 # Template directories to search AFTER HOST_TEMPLATE_DIRS
@@ -113,6 +115,6 @@ TEMPLATE_DIRS = [
     
 # A list of dictionaries of settings for sites that share this config and virtualenv
 SHARED_HOST_SETTINGS = [
-    {"host_name": HOST_NAME, "database_path": DATABASE_PATH, "time_zone": TIME_ZONE, "contact_email_addr": CONTACT_EMAIL_ADDR, "contact_name": CONTACT_NAME},
+    {"host_name": HOST_NAME, },
     ]
 
