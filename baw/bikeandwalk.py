@@ -43,10 +43,10 @@ def help(path=None):
             return render_template(path)
         return render_template('count_administration/count_administration.html')
 
-    if render_template != None:
+    if rendered_html!= None:
         return render_template('index.html',rendered_html=rendered_html,)
     else:
-        abort(400)
+        return abort(400)
     
 @mod.route('/links/')
 def links():
@@ -59,7 +59,7 @@ def links():
     if render_template != None:
         return render_template('index.html',rendered_html=rendered_html,)
     else:
-        abort(400)
+        return abort(404)
    
    
 @mod.route('/docs/')
@@ -91,7 +91,11 @@ def docs(path=None):
         g.title = "Del Rio Trail Bike Count Project"
         rendered_html = render_markdown_for('delRioTrail.md',mod,escape=False) #False to preserve html
 
-    if render_template != None:
+    if rendered_html != None:
         return render_template('index.html',rendered_html=rendered_html,)
     else:
-        abort(400)
+        # Try to find it in shotglass docs
+        from shotglass2.www.views import home
+        return home.docs(path)
+        
+    return abort(404)
