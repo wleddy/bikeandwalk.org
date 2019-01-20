@@ -46,7 +46,7 @@ def help(path=None):
     if rendered_html!= None:
         return render_template('index.html',rendered_html=rendered_html,)
     else:
-        return abort(400)
+        return abort(404)
     
 @mod.route('/links/')
 def links():
