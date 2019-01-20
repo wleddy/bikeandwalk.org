@@ -1,5 +1,6 @@
 from flask import request, session, g, redirect, url_for, abort, \
      render_template, flash, Blueprint
+from jinja2 import TemplateNotFound
 from shotglass2.users.admin import login_required, table_access_required
 from shotglass2.takeabeltof.utils import render_markdown_for, printException, handle_request_error, send_static_file
 from shotglass2.takeabeltof.date_utils import datetime_as_string
@@ -25,6 +26,7 @@ def setExits():
 
 @mod.route('/help/')
 @mod.route('/help/<path:path>/')
+@mod.route('/help/<path:path>')
 def help(path=None):
     setExits()
     #import pdb;pdb.set_trace()
@@ -34,15 +36,20 @@ def help(path=None):
     if path:
         path_parts = path.strip('/').split('/')
 
-    if not path or len(path_parts) == 0:
-        rendered_html = render_markdown_for('help.md',mod)
-    elif path_parts[0].lower() == 'counting':
-            return render_template('counting.html')
-    elif path_parts[0].lower() == 'count_administration':
-        if len(path_parts) > 1:
-            return render_template(path)
-        return render_template('count_administration/count_administration.html')
+    try:
+        if not path or len(path_parts) == 0:
+            rendered_html = render_markdown_for('help.md',mod)
+        elif path_parts[0].lower() == 'counting':
+                return render_template('counting.html')
+        elif path_parts[0].lower() == 'count_administration':
+            if len(path_parts) > 1:
+                return render_template(path)
+            return render_template('count_administration/count_administration.html')
 
+    except TemplateNotFound:
+    # Old crawler data looks for help files differently
+        return redirect('/help/' + path + '/' + path_parts[-1] + '.html')
+        
     if rendered_html!= None:
         return render_template('index.html',rendered_html=rendered_html,)
     else:
